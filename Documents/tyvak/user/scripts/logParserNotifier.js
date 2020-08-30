@@ -121,13 +121,24 @@ async function notifierScript(path) {
     }
   }
 
+
+  //create directory check so we can mkdir if it's not in our file structure
+  let directoryCheck = path.split('/')
+  directoryCheck = directoryCheck.slice(0, directoryCheck.length - 1)
+  directoryCheck = directoryCheck.join('/')
+  console.log(directoryCheck)
+
   //set base case and incrementer for our file writing loop
   let fileNumber = 1;
   let fileWritten = false;
 
-  //keep incrementing preformatted file structure until filepath doesn't exist to async write to system and log to console
+  //keep incrementing preformatted file structure until filepath doesn't exist before write to system and log to console
   while (fileWritten === false) {
     try {
+      if(!fs.existsSync(directoryCheck)){
+        fs.mkdirSync(directoryCheck)
+      }
+
       if (!fs.existsSync(path)) {
         console.log("writing...");
         fs.writeFile(`${path}`, toWriteToFile, (err) => {
@@ -137,7 +148,7 @@ async function notifierScript(path) {
         fileWritten = true;
       } else {
         console.log(`${path} exists, trying new path.`);
-        path = `../logs/log_file${fileNumber++}.txt`;
+        path = `${directoryCheck}/log_file${fileNumber++}.txt`;
       }
     } catch (err) {
       console.error(err);
@@ -145,5 +156,6 @@ async function notifierScript(path) {
   }
 }
 
+
 //adust this path string to write to different subdirectories.
-notifierScript("../logs/log_file1.txt");
+notifierScript("../logs/nested_logs/log_file1.txt");
