@@ -158,4 +158,5 @@ async function notifierScript(path) {
 
 
 //adust this path string to write to different subdirectories.
+//This path can include and create nested directories, but they must start with at the ../logs/ subdirectory (../logs/nested_logs/logs/log_file1.txt)
 notifierScript("../logs/log_file1.txt");
