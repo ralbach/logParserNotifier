@@ -158,4 +158,4 @@ async function notifierScript(path) {
 
 
 //adust this path string to write to different subdirectories.
-notifierScript("../logs/nested_logs/log_file1.txt");
+notifierScript("../logs/log_file1.txt");
