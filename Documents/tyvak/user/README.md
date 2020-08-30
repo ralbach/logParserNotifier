@@ -1,5 +1,8 @@
 # Log Parser Notifier
 
+![Image of result example logs]
+(./alertScreenShot.jpg)
+
 ### Log Parser Notifier is a custom built script to take messages and user data in CSV format, and alert the users to messages they've subscribed to.
 
 ### i.e. Jack is subscribed to message codes 1 & 3 while Stacy subscribes to message codes 2. If our message data contains a 1 we will notify him of the appropriate message while leaving Stacy unbothered.
